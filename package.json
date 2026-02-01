@@ -1,0 +1,11 @@
+{
+  "name": "tab-agent-hf-root",
+  "version": "1.0.0",
+  "description": "Root proxy for Tab Agent Web",
+  "scripts": {
+    "dev": "npm run dev --prefix TabAgent-Web",
+    "build": "npm run build --prefix TabAgent-Web",
+    "preview": "npm run preview --prefix TabAgent-Web",
+    "install:web": "npm install --prefix TabAgent-Web"
+  }
+}

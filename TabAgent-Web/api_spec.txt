@@ -1,0 +1,18 @@
+Gradio Client Version: 2.0.3
+Connecting to https://scottymills-tab-agent.hf.space/...
+Loaded as API: https://scottymills-tab-agent.hf.space/
+Connected!
+
+--- API Information ---
+Client.predict() Usage Info
+---------------------------
+Named API endpoints: 1
+
+ - predict(name, api_name="/greet") -> output
+    Parameters:
+     - [Textbox] name: str (required)  
+    Returns:
+     - [Textbox] output: str 
+
+
+Verification Complete

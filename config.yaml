@@ -1,0 +1,112 @@
+# Tab Agent Pro Configuration
+# HuggingFace Space with Zero GPU
+
+app:
+  title: "Tab Agent Pro"
+  description: "AI Tablature + Audio-Reactive Video Generation"
+  version: "2.0.0"
+  
+# HuggingFace Space settings
+space:
+  sdk: gradio
+  sdk_version: "4.50.0"
+  python_version: "3.11"
+  hardware: "zero-a10g"  # Zero GPU with A10G
+  
+# Tab Agent settings
+tab_agent:
+  # Primary transcription model
+  primary_model: "basic_pitch"  # "basic_pitch" or "yourmt3"
+  fallback_model: "basic_pitch"
+  
+  # Instrument tunings (MIDI note numbers)
+  tunings:
+    guitar_standard: [40, 45, 50, 55, 59, 64]  # E2-A2-D3-G3-B3-E4
+    guitar_drop_d: [38, 45, 50, 55, 59, 64]    # D2-A2-D3-G3-B3-E4
+    bass_4_string: [28, 33, 38, 43]            # E1-A1-D2-G2
+    bass_5_string: [23, 28, 33, 38, 43]        # B0-E1-A1-D2-G2
+    
+  # Processing parameters
+  num_frets: 24
+  onset_threshold: 0.5
+  frame_threshold: 0.3
+  min_note_duration: 0.05
+  
+  # Suno/AI detection
+  suno_detection:
+    enabled: true
+    high_freq_threshold: 0.15  # 8-16kHz energy ratio
+    spectral_flatness_threshold: 0.4
+    
+# Deforum settings
+deforum:
+  enabled: true
+  
+  # Model configuration
+  model: "runwayml/stable-diffusion-v1-5"
+  scheduler: "DPMSolverMultistep"
+  
+  # Default generation parameters
+  defaults:
+    width: 512
+    height: 512
+    num_inference_steps: 25
+    guidance_scale: 7.5
+    fps: 15
+    max_frames: 120  # 8 seconds at 15fps
+    
+  # Audio sync parameters
+  audio_sync:
+    onset_sensitivity: 0.5
+    beat_strength_scale: 2.0
+    note_to_zoom: true
+    note_to_rotation: true
+    
+  # Style presets
+  presets:
+    guitar_hero:
+      prompt_base: "electric guitar, neon lights, concert stage, dramatic lighting, music visualization"
+      color_coherence: "LAB"
+      motion_scale: 1.5
+      
+    concert:
+      prompt_base: "live concert, crowd silhouette, stage lights, smoke effects, rock music atmosphere"
+      color_coherence: "HSV"
+      motion_scale: 1.0
+      
+    abstract:
+      prompt_base: "abstract art, flowing colors, musical waveforms, digital art, psychedelic patterns"
+      color_coherence: "None"
+      motion_scale: 2.0
+      
+    acoustic:
+      prompt_base: "acoustic guitar, warm lighting, intimate setting, wooden textures, folk music vibes"
+      color_coherence: "LAB"
+      motion_scale: 0.5
+
+# Webflow integration
+webflow:
+  # API endpoints exposed to Webflow
+  endpoints:
+    transcribe: "/api/transcribe"
+    generate_video: "/api/generate"
+    preview: "/api/preview"
+    
+  # CORS settings
+  cors:
+    allowed_origins:
+      - "https://*.webflow.io"
+      - "https://tabagent.pro"
+      - "http://localhost:*"
+
+# Export settings
+export:
+  midi:
+    ticks_per_beat: 480
+    tempo_bpm: 120
+    
+  video:
+    format: "mp4"
+    codec: "h264"
+    audio_codec: "aac"
+    quality: 23  # CRF value (lower = better)

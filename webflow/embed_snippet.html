@@ -1,0 +1,276 @@
+<!--
+  Tab Agent Pro - Webflow Embed Snippet
+  
+  Add this to your Webflow page:
+  1. Go to Page Settings → Custom Code → Footer Code
+  2. Paste this entire snippet
+  3. Update YOUR_SPACE_URL with your actual HuggingFace Space URL
+-->
+
+<!-- Gradio Client -->
+<script type="module">
+  import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest/+esm";
+  window.GradioClient = Client;
+</script>
+
+<!-- Tab Agent API Client -->
+<script src="https://raw.githubusercontent.com/YOUR_USERNAME/TabAgent-HF/main/webflow/api_client.js"></script>
+
+<!-- Base Styles for Embedded Components -->
+<style>
+  /* Tab Agent Component Styles */
+  .ta-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #fff;
+  }
+
+  /* Upload Zone */
+  .ta-upload-zone {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ta-upload-zone:hover,
+  .ta-upload-zone.drag-over {
+    border-color: rgba(147, 51, 234, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .ta-upload-zone input[type="file"] {
+    display: none;
+  }
+
+  .ta-upload-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ta-upload-icon svg {
+    width: 32px;
+    height: 32px;
+    color: #a855f7;
+  }
+
+  /* Buttons */
+  .ta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+  }
+
+  .ta-btn-primary {
+    background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+    color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(147, 51, 234, 0.3);
+  }
+
+  .ta-btn-primary:hover {
+    background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(147, 51, 234, 0.4);
+  }
+
+  .ta-btn-secondary {
+    background: transparent;
+    color: #a1a1aa;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .ta-btn-secondary:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Cards */
+  .ta-card {
+    background: linear-gradient(180deg, rgba(39, 39, 42, 1) 0%, rgba(24, 24, 27, 1) 100%);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+  }
+
+  .ta-card-glass {
+    background: rgba(24, 24, 27, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Tab Preview */
+  .ta-tab-preview {
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    color: #10b981;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  /* Loading Spinner */
+  .ta-spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 4px solid rgba(147, 51, 234, 0.3);
+    border-top-color: #a855f7;
+    border-radius: 50%;
+    animation: ta-spin 1s linear infinite;
+  }
+
+  @keyframes ta-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Success Badge */
+  .ta-badge-success {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* Download Button */
+  .ta-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+    color: #fff;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .ta-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px -2px rgba(147, 51, 234, 0.4);
+  }
+
+  /* Video Container */
+  .ta-video-container {
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .ta-video-container video {
+    width: 100%;
+    display: block;
+  }
+
+  /* Loader Overlay */
+  .ta-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    z-index: 9999;
+  }
+
+  .ta-loader-text {
+    color: #a1a1aa;
+    font-size: 0.875rem;
+  }
+
+  /* Hidden by default */
+  [data-results],
+  [data-loader] {
+    display: none;
+  }
+</style>
+
+<!-- 
+  Example HTML Structure for Webflow:
+  Copy these elements into your Webflow designer
+-->
+
+<!--
+<div class="ta-container">
+  
+  <!-- Upload Section -->
+  <div class="ta-upload-zone" data-dropzone>
+    <div class="ta-upload-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+      </svg>
+    </div>
+    <h3>Drop your audio file here</h3>
+    <p style="color: #71717a;">or click to browse (MP3, WAV, FLAC)</p>
+    <input type="file" accept="audio/*" data-transcribe-input />
+  </div>
+
+  <!-- Results Section (hidden by default) -->
+  <div data-results class="ta-card" style="margin-top: 2rem;">
+    <div class="ta-badge-success">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+      Transcription Complete
+    </div>
+    
+    <div data-status style="margin-top: 1rem;"></div>
+    
+    <div style="margin-top: 1.5rem;">
+      <h4 style="margin-bottom: 0.5rem;">Tab Preview</h4>
+      <pre class="ta-tab-preview" data-tab-preview></pre>
+    </div>
+    
+    <a href="#" class="ta-download-btn" data-download style="margin-top: 1.5rem; display: none;">
+      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+      </svg>
+      Download Tablature (ZIP)
+    </a>
+  </div>
+  
+  <!-- Loader Overlay -->
+  <div class="ta-loader-overlay" data-loader>
+    <div class="ta-spinner"></div>
+    <p class="ta-loader-text">Processing your audio...</p>
+  </div>
+
+</div>
+-->
+
+<script>
+  // Update this with your actual HuggingFace Space URL
+  const SPACE_URL = "https://YOUR_USERNAME-tab-agent-pro.hf.space";
+  
+  // The API client will initialize automatically on page load
+  // See api_client.js for the full implementation
+</script>

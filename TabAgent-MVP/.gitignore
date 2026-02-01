@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Tab Agent specific
+output/
+*.mid
+*.tab
+*.json
+input/*.wav
+input/*.mp3
+input/*.flac
+!user_memory/user_preferences.json
+
+# Temporary files
+*.log
+*.tmp
+temp/
+separated_stems/
+stems/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

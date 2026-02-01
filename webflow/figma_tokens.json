@@ -1,0 +1,250 @@
+{
+  "name": "Tab Agent Pro Design System",
+  "version": "1.0.0",
+  "description": "Design tokens for Figma → Webflow integration",
+  
+  "colors": {
+    "primary": {
+      "50": "#faf5ff",
+      "100": "#f3e8ff",
+      "200": "#e9d5ff",
+      "300": "#d8b4fe",
+      "400": "#c084fc",
+      "500": "#a855f7",
+      "600": "#9333ea",
+      "700": "#7c3aed",
+      "800": "#6b21a8",
+      "900": "#581c87"
+    },
+    "secondary": {
+      "50": "#eff6ff",
+      "100": "#dbeafe",
+      "200": "#bfdbfe",
+      "300": "#93c5fd",
+      "400": "#60a5fa",
+      "500": "#3b82f6",
+      "600": "#2563eb",
+      "700": "#1d4ed8",
+      "800": "#1e40af",
+      "900": "#1e3a8a"
+    },
+    "accent": {
+      "emerald": "#10b981",
+      "amber": "#f59e0b",
+      "rose": "#f43f5e"
+    },
+    "neutral": {
+      "50": "#fafafa",
+      "100": "#f4f4f5",
+      "200": "#e4e4e7",
+      "300": "#d4d4d8",
+      "400": "#a1a1aa",
+      "500": "#71717a",
+      "600": "#52525b",
+      "700": "#3f3f46",
+      "800": "#27272a",
+      "900": "#18181b",
+      "950": "#09090b"
+    }
+  },
+  
+  "typography": {
+    "fontFamilies": {
+      "heading": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+      "body": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+      "mono": "JetBrains Mono, Fira Code, Consolas, monospace"
+    },
+    "fontSizes": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem",
+      "5xl": "3rem",
+      "6xl": "3.75rem",
+      "7xl": "4.5rem"
+    },
+    "fontWeights": {
+      "normal": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800
+    },
+    "lineHeights": {
+      "tight": 1.25,
+      "snug": 1.375,
+      "normal": 1.5,
+      "relaxed": 1.625
+    }
+  },
+  
+  "spacing": {
+    "0": "0",
+    "1": "0.25rem",
+    "2": "0.5rem",
+    "3": "0.75rem",
+    "4": "1rem",
+    "5": "1.25rem",
+    "6": "1.5rem",
+    "8": "2rem",
+    "10": "2.5rem",
+    "12": "3rem",
+    "16": "4rem",
+    "20": "5rem",
+    "24": "6rem",
+    "32": "8rem"
+  },
+  
+  "borderRadius": {
+    "none": "0",
+    "sm": "0.125rem",
+    "default": "0.25rem",
+    "md": "0.375rem",
+    "lg": "0.5rem",
+    "xl": "0.75rem",
+    "2xl": "1rem",
+    "3xl": "1.5rem",
+    "full": "9999px"
+  },
+  
+  "shadows": {
+    "sm": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+    "default": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+    "md": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+    "lg": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+    "xl": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+    "glow-purple": "0 0 20px rgba(147, 51, 234, 0.4)",
+    "glow-blue": "0 0 20px rgba(37, 99, 235, 0.4)"
+  },
+  
+  "gradients": {
+    "hero": "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%)",
+    "card": "linear-gradient(180deg, rgba(39, 39, 42, 1) 0%, rgba(24, 24, 27, 1) 100%)",
+    "button-primary": "linear-gradient(135deg, #9333ea 0%, #7c3aed 100%)",
+    "button-hover": "linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%)",
+    "text-shine": "linear-gradient(90deg, #fff 0%, #a1a1aa 50%, #fff 100%)"
+  },
+  
+  "effects": {
+    "glassmorphism": {
+      "background": "rgba(24, 24, 27, 0.8)",
+      "backdropFilter": "blur(12px)",
+      "border": "1px solid rgba(255, 255, 255, 0.1)"
+    },
+    "neonGlow": {
+      "purple": {
+        "boxShadow": "0 0 5px #a855f7, 0 0 20px #a855f7, 0 0 40px #a855f7",
+        "textShadow": "0 0 10px #a855f7, 0 0 20px #a855f7"
+      },
+      "blue": {
+        "boxShadow": "0 0 5px #3b82f6, 0 0 20px #3b82f6, 0 0 40px #3b82f6",
+        "textShadow": "0 0 10px #3b82f6, 0 0 20px #3b82f6"
+      }
+    }
+  },
+  
+  "components": {
+    "button": {
+      "primary": {
+        "background": "linear-gradient(135deg, #9333ea 0%, #7c3aed 100%)",
+        "color": "#ffffff",
+        "borderRadius": "0.75rem",
+        "padding": "0.75rem 1.5rem",
+        "fontSize": "1rem",
+        "fontWeight": 600,
+        "boxShadow": "0 4px 6px -1px rgba(147, 51, 234, 0.3)",
+        "hover": {
+          "background": "linear-gradient(135deg, #a855f7 0%, #8b5cf6 100%)",
+          "transform": "translateY(-2px)",
+          "boxShadow": "0 6px 12px -2px rgba(147, 51, 234, 0.4)"
+        }
+      },
+      "secondary": {
+        "background": "transparent",
+        "color": "#a1a1aa",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "borderRadius": "0.75rem",
+        "padding": "0.75rem 1.5rem",
+        "hover": {
+          "color": "#ffffff",
+          "borderColor": "rgba(255, 255, 255, 0.2)",
+          "background": "rgba(255, 255, 255, 0.05)"
+        }
+      }
+    },
+    "card": {
+      "default": {
+        "background": "linear-gradient(180deg, rgba(39, 39, 42, 1) 0%, rgba(24, 24, 27, 1) 100%)",
+        "borderRadius": "1.5rem",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "padding": "2rem"
+      },
+      "glass": {
+        "background": "rgba(24, 24, 27, 0.8)",
+        "backdropFilter": "blur(12px)",
+        "borderRadius": "1.5rem",
+        "border": "1px solid rgba(255, 255, 255, 0.1)",
+        "padding": "2rem"
+      }
+    },
+    "uploadZone": {
+      "background": "rgba(255, 255, 255, 0.05)",
+      "border": "2px dashed rgba(255, 255, 255, 0.1)",
+      "borderRadius": "1.5rem",
+      "padding": "3rem 2rem",
+      "hover": {
+        "borderColor": "rgba(147, 51, 234, 0.5)",
+        "background": "rgba(255, 255, 255, 0.1)"
+      }
+    },
+    "tabPreview": {
+      "fontFamily": "JetBrains Mono, Fira Code, Consolas, monospace",
+      "fontSize": "0.75rem",
+      "lineHeight": 1.4,
+      "background": "rgba(0, 0, 0, 0.4)",
+      "borderRadius": "0.75rem",
+      "padding": "1rem",
+      "color": "#10b981",
+      "border": "1px solid rgba(255, 255, 255, 0.05)"
+    }
+  },
+  
+  "animations": {
+    "fadeIn": {
+      "from": { "opacity": 0, "transform": "translateY(20px)" },
+      "to": { "opacity": 1, "transform": "translateY(0)" },
+      "duration": "0.5s",
+      "easing": "cubic-bezier(0.4, 0, 0.2, 1)"
+    },
+    "pulse": {
+      "keyframes": "0%, 100% { opacity: 1 } 50% { opacity: 0.5 }",
+      "duration": "2s",
+      "easing": "ease-in-out",
+      "iterationCount": "infinite"
+    },
+    "spin": {
+      "keyframes": "0% { transform: rotate(0deg) } 100% { transform: rotate(360deg) }",
+      "duration": "1s",
+      "easing": "linear",
+      "iterationCount": "infinite"
+    },
+    "shimmer": {
+      "keyframes": "0% { backgroundPosition: -200% 0 } 100% { backgroundPosition: 200% 0 }",
+      "duration": "2s",
+      "easing": "linear",
+      "iterationCount": "infinite"
+    }
+  },
+  
+  "breakpoints": {
+    "sm": "640px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px",
+    "2xl": "1536px"
+  }
+}

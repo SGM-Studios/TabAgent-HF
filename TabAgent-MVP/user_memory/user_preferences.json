@@ -1,0 +1,11 @@
+{
+  "config": {
+    "bass_tuning": [23, 28, 33, 38, 43],
+    "guitar_tuning": [40, 45, 50, 55, 59, 64],
+    "bass_num_strings": 5,
+    "guitar_num_strings": 6,
+    "num_frets": 24,
+    "prefer_low_strings": true
+  },
+  "sessions": []
+}
