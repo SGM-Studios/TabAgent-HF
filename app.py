@@ -58,7 +58,6 @@ def process_audio_impl(
     include_midi: bool,
     include_tab: bool,
     include_json: bool,
-    include_json: bool,
     detect_suno: bool,
     model_type: str = "Basic Pitch",  # New argument
     progress: gr.Progress = None
@@ -415,8 +414,6 @@ Upload your audio and get:
                         instrument,
                         tuning,
                         export_midi,
-                        export_tab,
-                        export_json,
                         export_tab,
                         export_json,
                         detect_suno,
