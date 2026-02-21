@@ -1,6 +1,71 @@
-# Documentation files
-*.md
+# Dependencies
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
 
-Wait, I need to reconsider this. The markdown files (.md) are source documentation files, not build artifacts or temporary files, so they should not be ignored. Since only documentation source files were added and no build artifacts, dependencies, or temp files, the .gitignore should remain empty.
+# Build artifacts
+build/
+dist/
+*.egg
+*.egg-info/
+*.so
+*.dylib
+*.dll
+*.exe
+*.o
+*.obj
+*.out
 
-(Empty - output nothing)
+# Testing
+.coverage
+coverage/
+htmlcov/
+.nyc_output/
+.mypy_cache/
+.pytest_cache/
+.tox/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*
+!.env.example
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Icon?
+.CFUserTextEncoding
+
+# Python specific
+*.py[cod]
+*$py.class
+*$pyc.class
+*.so
+.Python
+*.sqlite3
+*.db
+!*.gitignore
