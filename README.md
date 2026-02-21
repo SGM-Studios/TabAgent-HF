@@ -37,6 +37,19 @@ Upload your audio and get:
 - 🎬 **Audio-synced videos** with Deforum Stable Diffusion
 - 📦 **Multiple formats**: MIDI, ASCII tabs, JSON
 
+## 📋 Repository Overview
+
+This repository contains a complete AI-powered music transcription and video generation platform. It combines multiple cutting-edge technologies to convert audio files into guitar/bass tablatures and generate synchronized videos.
+
+### Project Structure
+- `app.py`: Main Gradio application
+- `agents/`: Audio processing agents (Splitter, Ear, Tab, SunoDetector)
+- `deforum/`: Video generation components
+- `tests/`: Unit tests for all major components
+- `webflow/`: Webflow integration assets
+- `TabAgent-MVP/`: Minimum viable product implementation
+- `TabAgent-Web/`: Web-based frontend components
+
 ## ✨ Features
 
 ### Tab Agent (Audio Transcription)
