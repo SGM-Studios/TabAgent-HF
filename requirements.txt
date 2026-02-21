@@ -56,3 +56,11 @@ python-dotenv>=1.0.0
 # ============================================================================
 pytest>=8.0.0
 pytest-cov>=4.1.0
+
+# ============================================================================
+# Tour Manager Dependencies
+# ============================================================================
+python-telegram-bot
+openai-whisper
+torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+open-interpreter
