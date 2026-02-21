@@ -1,0 +1,6 @@
+# Documentation files
+*.md
+
+Wait, I need to reconsider this. The markdown files (.md) are source documentation files, not build artifacts or temporary files, so they should not be ignored. Since only documentation source files were added and no build artifacts, dependencies, or temp files, the .gitignore should remain empty.
+
+(Empty - output nothing)

@@ -14,9 +14,10 @@ This document provides guidance for AI assistants working with the Tab Agent Pro
 
 ```
 TabAgent-HF/
-├── app.py                      # Main Gradio application (559 lines)
+├── app.py                      # Main Gradio application
 ├── config.yaml                 # Central configuration file
 ├── requirements.txt            # Python dependencies
+├── pytest.ini                  # Pytest configuration
 ├── package.json                # Root npm proxy scripts
 ├── README.md                   # HuggingFace Space metadata
 ├── DEPLOYMENT.md               # Deployment documentation
@@ -26,13 +27,31 @@ TabAgent-HF/
 │   ├── ear.py                  # EarAgent: Audio→MIDI (Basic Pitch/YourMT3+)
 │   ├── splitter.py             # SplitterAgent: Demucs stem separation
 │   ├── tab.py                  # TabAgent: MIDI→Tablature (Viterbi algorithm)
-│   └── suno_detector.py        # AI-generated audio detection
+│   ├── suno_detector.py        # AI-generated audio detection
+│   ├── types.py                # Shared type definitions (Note, TabNote, Tuning)
+│   ├── exceptions.py           # Custom exception classes
+│   └── utils.py                # Utility functions
 │
 ├── deforum/                    # Video generation module
 │   ├── __init__.py             # Module exports
 │   ├── generator.py            # DeforumGenerator: Stable Diffusion video
 │   ├── audio_sync.py           # AudioSyncEngine: Audio→animation mapping
-│   └── presets.py              # Style presets (Guitar Hero, Concert, etc.)
+│   ├── presets.py              # Style presets (Guitar Hero, Concert, etc.)
+│   └── types.py                # Type definitions (AudioFeatures, VideoResult)
+│
+├── tests/                      # Comprehensive test suite
+│   ├── conftest.py             # Pytest fixtures
+│   ├── test_agents_types.py    # Tests for agent type definitions
+│   ├── test_agents_utils.py    # Tests for utility functions
+│   ├── test_tab_agent.py       # Tests for TabAgent
+│   ├── test_ear_agent.py       # Tests for EarAgent
+│   ├── test_suno_detector.py   # Tests for SunoDetector
+│   ├── test_splitter_agent.py  # Tests for SplitterAgent
+│   ├── test_audio_sync.py      # Tests for AudioSyncEngine
+│   ├── test_deforum_types.py   # Tests for deforum types
+│   ├── test_deforum_presets.py # Tests for style presets
+│   ├── test_deforum_generator.py # Tests for DeforumGenerator
+│   └── test_app.py             # Tests for main application
 │
 ├── webflow/                    # Frontend integration assets
 │   ├── api_client.js           # Gradio API client for Webflow
@@ -294,15 +313,60 @@ UI components are in `TabAgent-Web/src/components/`:
 
 ## Testing
 
-Currently manual testing only. Key verification:
+The project includes a comprehensive pytest test suite with 200+ test cases.
+
+### Running Tests
 
 ```bash
-# Verify Python dependencies
-python TabAgent-MVP/test_pipeline.py
+# Run all tests
+pytest
 
-# Verify TypeScript compilation
-cd TabAgent-Web && npm run lint
+# Run with verbose output
+pytest -v
+
+# Run specific test file
+pytest tests/test_tab_agent.py
+
+# Run tests by marker
+pytest -m unit          # Unit tests only
+pytest -m integration   # Integration tests only
+pytest -m "not slow"    # Skip slow tests
+
+# Run with coverage
+pytest --cov=agents --cov=deforum --cov-report=html
 ```
+
+### Test Categories (Markers)
+
+- `@pytest.mark.unit` - Fast unit tests, no external dependencies
+- `@pytest.mark.integration` - Tests requiring models or external resources
+- `@pytest.mark.slow` - Long-running tests
+- `@pytest.mark.gpu` - Tests requiring GPU
+
+### Test Structure
+
+```
+tests/
+├── conftest.py              # Shared fixtures (audio samples, agents, etc.)
+├── test_agents_types.py     # Note, TabNote, Tuning validation
+├── test_agents_utils.py     # Utility function tests
+├── test_tab_agent.py        # Tablature generation tests
+├── test_ear_agent.py        # Transcription tests
+├── test_suno_detector.py    # AI detection tests
+├── test_splitter_agent.py   # Stem separation tests
+├── test_audio_sync.py       # Audio analysis tests
+├── test_deforum_*.py        # Video generation tests
+└── test_app.py              # Application integration tests
+```
+
+### Key Fixtures
+
+- `sample_audio_mono` - Mono sine wave WAV file
+- `sample_audio_stereo` - Stereo audio file
+- `sample_notes` - List of Note objects for testing
+- `tab_agent` - Pre-configured TabAgent instance
+- `ear_agent` - EarAgent in mock mode
+- `audio_sync_engine` - AudioSyncEngine instance
 
 ## Deployment
 
@@ -322,10 +386,10 @@ cd TabAgent-Web && npm run lint
 
 ## Known Issues / Notes
 
-1. `app.py` has duplicate parameter `include_json` at lines 60-61 (minor bug)
-2. No unit test framework - uses manual testing
-3. `numpy<2.0` pinned for compatibility
-4. `xformers` excluded on macOS (`sys_platform != 'darwin'`)
+1. `numpy<2.0` pinned for compatibility with older PyTorch versions
+2. `xformers` excluded on macOS (`sys_platform != 'darwin'`)
+3. YourMT3+ requires monkey-patching `torch.load` for checkpoint loading
+4. Demucs may fall back to original audio if not installed
 
 ## Processing Pipeline Overview
 
